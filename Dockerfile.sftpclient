@@ -1,0 +1,10 @@
+FROM registry.redhat.io/ubi9/ubi
+
+USER root
+
+RUN dnf install -y openssh-clients && \
+    dnf clean all
+
+USER 1001
+
+CMD ["/usr/bin/run-httpd"]

@@ -1,0 +1,15 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: httpd-sftp
+  labels:
+    app: httpd-sftp
+spec:
+  subdomain: 
+  to:
+    kind: Service
+    name: httpd-sftp
+    weight: 100
+  port:
+    targetPort: 8080
+  wildcardPolicy: None

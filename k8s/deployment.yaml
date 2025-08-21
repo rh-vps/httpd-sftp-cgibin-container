@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd-sftp
+  labels:
+    app: httpd-sftp
+    app.openshift.io/runtime: httpd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpd-sftp
+  template:
+    metadata:
+      labels:
+        app: httpd-sftp
+    spec:
+      containers:
+      - name: httpd
+        resources: {}
+        image: quay.io/mukeshs1306/sample-httpd:latest
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - secretRef:
+            name: httpd-sftp

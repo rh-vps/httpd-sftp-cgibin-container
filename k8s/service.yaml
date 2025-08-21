@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: httpd-sftp
+  labels:
+    app: httpd-sftp
+spec:
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
+  selector:
+    app: httpd-sftp
