@@ -4,6 +4,9 @@ metadata:
   name: httpd-sftp
   labels:
     app: httpd-sftp
+    app.kubernetes.io/component: httpd-sftp
+    app.kubernetes.io/instance: httpd-sftp
+    app.kubernetes.io/name: httpd-sftp
     app.openshift.io/runtime: httpd
 spec:
   replicas: 1
@@ -18,9 +21,12 @@ spec:
       containers:
       - name: httpd
         resources: {}
-        image: quay.io/mukeshs1306/sample-httpd:latest
+        image: httpd-sftp:latest
         ports:
         - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
         envFrom:
         - secretRef:
             name: httpd-sftp

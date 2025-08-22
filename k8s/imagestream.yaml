@@ -1,0 +1,22 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: httpd-sftp
+  labels:
+    app: httpd-sftp
+    app.kubernetes.io/component: httpd-sftp
+    app.kubernetes.io/instance: httpd-sftp
+    app.kubernetes.io/name: httpd-sftp
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      from:
+        kind: DockerImage
+        name: 'quay.io/user/httpd-sftp:latest'
+      generation: 2
+      importPolicy:
+        importMode: Legacy
+      referencePolicy:
+        type: Local

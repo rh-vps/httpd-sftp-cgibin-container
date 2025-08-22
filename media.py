@@ -39,7 +39,7 @@ try:
     if stat.S_ISDIR(st.st_mode):
         # Directory listing
         files = sorted(sftp.listdir(remote_path))
-        script_name = os.environ.get("SCRIPT_NAME", "/files")
+        script_name = os.environ.get("SCRIPT_NAME", "/")
 
         print("Content-Type: text/html\n")
         print(f"<html><body><h2>Listing for {html.escape(script_name + path_info)}</h2><ul>")
@@ -51,6 +51,11 @@ try:
     else:
         # File download
         filename = os.path.basename(remote_path)
+
+        # 🔽 Force lowercase extension
+        name, ext = os.path.splitext(filename)
+        filename = name + ext.lower()
+
         print("Content-Type: application/octet-stream")
         print(f'Content-Disposition: attachment; filename="{filename}"\n')
         sys.stdout.flush()

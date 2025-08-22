@@ -4,6 +4,9 @@ metadata:
   name: httpd-sftp
   labels:
     app: httpd-sftp
+    app.kubernetes.io/component: httpd-sftp
+    app.kubernetes.io/instance: httpd-sftp
+    app.kubernetes.io/name: httpd-sftp
 spec:
   ports:
     - protocol: TCP
